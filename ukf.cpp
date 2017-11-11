@@ -84,6 +84,9 @@ void UKF::ProcessMeasurement(MeasurementPackage meas_package) {
 		if (meas_package.sensor_type_ == MeasurementPackage::LASER) {
 			//for laser
 			x_ << meas_package.raw_measurements_[0], meas_package.raw_measurements_[1], 0, 0, 0;
+      //covariance matrix initialization - for resubmission
+      P_(0,0) = 0.15;
+      P_(1,1) = 0.15;
 		}
 		else if (meas_package.sensor_type_ == MeasurementPackage::RADAR) {
 			//for radar
